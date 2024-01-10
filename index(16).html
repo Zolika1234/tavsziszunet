@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #orakeret
+        {
+            margin           :  24px 0 48px 0    ;
+            width            :  612px            ;
+            border           :  4px solid rgb(0, 0, 0)   ;
+            border-radius    :  36px             ;
+            background-color :  rgb(106, 7, 187)             ;
+            box-shadow       :  8px 8px 8px rgb(106, 7, 187) ;
+            text-align       :  center           ;
+        }
+    
+        #kijelzo1
+        {
+            padding          :  24px             ;
+            line-height      :  normal           ;
+            font-size        :  96px             ;
+            color            :  rgb(0, 0, 0)             ;
+        }
+    
+        #kijelzo2
+        {
+            padding-bottom   :  24px             ;
+            line-height      :  normal           ;
+            font-size        :  36px             ;
+            color            :  rgb(0, 0, 0)             ;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    
+    
+    
+    <div id='orakeret'>
+        <h2>Tavaszi szünetig hátralévő idö: </h2>
+        <div id='kijelzo1'></div>
+        
+    </div>
+    
+    
+    
+    
+    <script>
+    
+        napnev = new Array( "vasárnap" , "hétfő" , "kedd" , "szerda" , "csütörtök" , "péntek" , "szombat" )
+    
+        function frissit()
+        {
+            most = new Date();
+            tavasziSzünet = new Date(2024, 2,27, 12, 0);
+            nap =Math.floor((tavasziSzünet - most) /(1000 *60 *60 *24));
+            maradek = (tavasziSzünet - most) %(1000 *60 *60 *24)
+            ora =Math.floor((maradek ) /(1000 *60 *60 ));
+            maradek = (maradek ) %(1000 *60 *60)
+            perc = Math.floor(maradek/(1000*60))
+            maradek= maradek % (1000*60)
+            mp=Math.floor(maradek /1000)
+    
+           
+    
+    
+            if( ora  < 10 )   ora  = "0" + ora
+            if( perc < 10 )   perc = "0" + perc
+            if( mp < 10 )   mp = "0" + mp
+           
+    
+    
+            kijelzo1.innerHTML = nap + 'nap<br>' + ora + ":" + perc + ":" + mp
+
+        }
+        setInterval('frissit()',1000)
+        frissit()
+    
+    
+    </script>
+    
+</body>
+</html>
